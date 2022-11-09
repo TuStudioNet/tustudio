@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="st.css">
+		<link rel="icon" href="favicon.png" type ="image/x-icon">
+		<meta charset="UTF-8">
+		<title>登录</title>
+	</head>
+	<body>
+		<div class="box">
+			<h2>登录/Login</h2>
+			<div class="input-box1">
+				 <label>账号</label>
+				 <input type="text" id="zhanghao">
+			</div>
+			<div class="input-box2">
+				<label>密码</label>
+				<input type="password" id="mima">
+			</div>
+			<div class="button-box">
+				<a id="forgotkey">忘记密码</a>
+				<div>
+					<button id="login">登录/注册</button>
+				</div>
+			</div>
+		</div>
+		<script>
+			login.onclick=function(){
+				if(zhanghao.value=="")
+				{
+					alert("账号不能为空");
+				}
+				else
+				{
+					if(mima.value=="")
+					{
+						alert("密码不能为空");
+					}
+					else
+					{
+						alert("尊敬的用户 "+zhanghao.value+" ，您好");
+						location.replace("#");
+					}
+				}
+			}
+			forgotkey.onclick=function(){
+				alert("建  议  重  新  注  册")
+			}
+		</script>
+	</body>
+</html>

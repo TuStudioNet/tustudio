@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div style="border: 2px solid #000000;margin: 10px;border-radius: 10px;">
+            <script>
+                function getUrlParam(url,name)
+                {
+                    var pattern = new RegExp("[?&]"+name+"\=([^&]+)", "g");
+                    var matcher = pattern.exec(url);
+                    var items = null;
+                    if(matcher != null)
+                    {
+                        try
+                        {
+                            items = decodeURIComponent(decodeURIComponent(matcher[1]));
+                        }
+                        catch(e)
+                        {
+                            try{
+                                items = decodeURIComponent(matcher[1]);
+                            }
+                            catch(e)
+                            {
+                                items = matcher[1];
+                            }
+                        }
+                    }
+                    return items;
+                };
+                let n=getUrlParam(window.location.href,"n");
+                let a=getUrlParam(window.location.href,"a");
+                let b=getUrlParam(window.location.href,"b");
+                let c=getUrlParam(window.location.href,"c");
+                document.write("<p style='margin-left:15px;' id='a'>");
+                document.write("大家好，这里是"+n+"看世界。");
+                document.write("</p><p style='margin-left:15px;' id='b'>");
+                document.write(a+b+"是怎么回事呢？"+a+"相信大家都很熟悉，但是"+a+b+"是怎么回事呢，下面就让小编带大家一起了解吧。");
+                document.write("</p><p style='margin-left:15px;' id='c'>");
+                document.write(a+b+"，其实就是"+c+"，大家可能会很惊讶"+a+"怎么会"+b+"呢？但事实就是这样，小编也感到非常惊讶。");
+                document.write("</p><p style='margin-left:15px;' id='d'>");
+                document.write("这就是关于"+a+b+"的事情了，大家有什么想法呢，欢迎在评论区告诉小编一起讨论哦！");
+                document.write("</p>");
+                function downloadFile(fileName, data) 
+                { // 保存 string 到 文本文件
+                    let aLink = document.createElement('a');
+                    let blob = new Blob([data]); //new Blob([content])
+                    let evt = document.createEvent("HTMLEvents");
+                    evt.initEvent("click", true, true); //initEvent 不加后两个参数在FF下会报错  事件类型，是否冒泡，是否阻止浏览器的默认行为
+                    aLink.download = fileName;
+                    aLink.href = URL.createObjectURL(blob);
+                    aLink.click();
+                }
+                let allword="大家好，这里是"+n+"看世界。\n"+a+b+"是怎么回事呢？"+a+"相信大家都很熟悉，但是"+a+b+"是怎么回事呢，下面就让小编带大家一起了解吧。\n"+a+b+"，其实就是"+c+"，大家可能会很惊讶"+a+"怎么会"+b+"呢？但事实就是这样，小编也感到非常惊讶。\n这就是关于"+a+b+"的事情了，大家有什么想法呢，欢迎在评论区告诉小编一起讨论哦！";
+            </script>
+        </div>
+        <p>营 销 音 乐</p>
+        <p id="word">当前为一号音乐</p>
+        <button onclick="document.getElementById('yingxiao').src='m1.m4a';document.getElementById('word').innerHTML='当前为一号音乐';">一号音乐</button>
+        <button onclick="document.getElementById('yingxiao').src='m2.m4a';document.getElementById('word').innerHTML='当前为二号音乐';">二号音乐</button>
+        <button onclick="document.getElementById('yingxiao').src='m3.m4a';document.getElementById('word').innerHTML='当前为三号音乐';">三号音乐</button>
+        <p></p>
+        <video src="m1.m4a" controls autoplay style="margin-top:0px;" id="yingxiao"></video>
+        <p></p>
+        <a href="" onclick="downloadFile('营销生成.txt',allword)">点击下载</a>
+        <button onclick="window.location.replace('index.html');">返回</button>    <button onclick="window.location.replace('settings.html?n='+n+'&a='+a+'&b='+b+'&c='+c+'&edit=true');">返回编辑</button>
+    </body>
+</html>

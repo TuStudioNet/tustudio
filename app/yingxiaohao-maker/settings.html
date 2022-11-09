@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <button onclick="window.location.replace('index.html');">返回</button>
+        <p></p>
+        名字：<input id="n">看世界（例：营销看世界）
+        <p></p>
+        主体：<input id="a">（例：杰哥）
+        <p></p>
+        事件：<input id="b">（例：杰哥登阿伟dua郎）
+        <p></p>
+        解释或另一种说法：<input id="c">（例：杰哥帮助阿伟成为大人）
+        <p></p>
+        <button onclick="window.location.replace('result.html?n='+document.getElementById('n').value+'&a='+document.getElementById('a').value+'&b='+document.getElementById('b').value+'&c='+document.getElementById('c').value);">生成</button>
+        <script>
+            function getUrlParam(url,name)
+            {
+                var pattern = new RegExp("[?&]"+name+"\=([^&]+)", "g");
+                var matcher = pattern.exec(url);
+                var items = null;
+                if(matcher != null)
+                {
+                    try
+                    {
+                        items = decodeURIComponent(decodeURIComponent(matcher[1]));
+                    }
+                    catch(e)
+                    {
+                        try{
+                            items = decodeURIComponent(matcher[1]);
+                        }
+                        catch(e)
+                        {
+                            items = matcher[1];
+                        }
+                    }
+                }
+                return items;
+            };
+            if(getUrlParam(window.location.href,"edit")=="true")
+            {
+                document.getElementById("n").value=getUrlParam(window.location.href,"n");
+                document.getElementById("a").value=getUrlParam(window.location.href,"a");
+                document.getElementById("b").value=getUrlParam(window.location.href,"b");
+                document.getElementById("c").value=getUrlParam(window.location.href,"c");
+            };
+        </script>
+    </body>
+</html>

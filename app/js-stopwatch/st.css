@@ -1,0 +1,88 @@
+@charset "utf-8";
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background: url("bg.jpeg") no-repeat;
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100vh;
+}
+
+.time-box > h1{
+	color: white;
+	margin-top: 90px;
+	font-size: 50px;
+}
+
+.boxbc{
+	height: 70px;
+	width: 100%;
+	background-color: rgba(75, 75, 75, 1);
+}
+
+.boxword{
+	margin-top: -57px;
+}
+
+.console .st-sp-btn{
+	width: 120px;
+	height: 35px;
+	border: 1.75px solid rgb(35, 35, 35);
+	background: rgb(120, 120, 120,0.35);
+	transition: 0.3s;
+}
+
+.console .res-btn{
+	width: 120px;
+	height: 35px;
+	border: 1.75px solid rgb(35, 35, 35);
+	background: rgb(120, 120, 120,0.35);
+	transition: 0.3s;
+}
+
+.console .res-btn:disabled{
+	width: 120px;
+	height: 35px;
+	border: 1.75px solid rgb(35, 35, 35);
+	background: rgba(182, 182, 182, 0.35);
+}
+
+.console .st-sp-btn:hover{
+	width: 125px;
+	height: 40px;
+	border: 1.75px solid rgb(35, 35, 35);
+	background: rgb(140, 140, 140,0.35);
+	transition: 0.1s;
+}
+
+.console .st-sp-btn:active{
+	width: 130px;
+	height: 45px;
+	border: 1.75px solid rgb(35, 35, 35);
+	background: rgb(140, 140, 140,0.35);
+}
+
+.console .res-btn:hover:not(:disabled){
+	width: 125px;
+	height: 40px;
+	border: 1.75px solid rgb(35, 35, 35);
+	background: rgb(140, 140, 140,0.35);
+	transition: 0.1s;
+}
+
+.console .res-btn:active:not(:disabled){
+	width: 130px;
+	height: 45px;
+	border: 1.75px solid rgb(35, 35, 35);
+	background: rgb(140, 140, 140,0.35);
+}
+
+.console{
+	margin-top: 10%;
+}
