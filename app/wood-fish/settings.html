@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>木鱼-设置</title>
+    </head>
+    <body>
+        <p>悬浮文字：</p><input name="a" onchange="change(this)">
+        <a href="index.html">完成</a>
+        <a href="..">退出</a>
+        <button onclick="localStorage.setItem('[s3] ☁ WoodFish_Number',0);alert('清除历史成功！');">清除历史</button>
+        <script>
+            window.onload=function()
+            {
+                document.getElementsByName("a").value=localStorage.getItem("[s3] ☁ WoodFish_Word");
+            };
+            function change(a)
+            {
+                localStorage.setItem("[s3] ☁ WoodFish_Word",a.value);
+            };
+        </script>
+    </body>
+</html>
