@@ -1,0 +1,100 @@
+*
+{
+    margin: 0;
+	padding: 0;
+}
+
+body{
+	background: url("") no-repeat;
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100vh;
+}
+
+.box{
+	height: 100px;
+	width: 100%;
+	background-color: rgba(75, 75, 75, 1);
+}
+
+.dis
+{
+	margin-top: 100px;
+}
+
+.boxword
+{
+    margin-top:-68px;
+    margin-bottom:50px;
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+.MGamesButton
+{
+	margin-top:150px;
+	margin-left:10px;
+	margin-bottom:20px;
+    width: 120px;
+	height: 35px;
+	border: 1.75px solid rgb(35, 35, 35);
+	background: rgb(120, 120, 120,0.35);
+	transition: 0.3s;
+}
+
+.MGamesButton:hover
+{
+	margin-left:10px;
+	margin-bottom:20px;
+    width: 125px;
+	height: 40px;
+	border: 1.75px solid rgb(35, 35, 35);
+	background: rgb(140, 140, 140,0.35);
+	transition: 0.1s;
+}
+
+.FilesButton
+{
+	margin-left:10px;
+	margin-bottom:20px;
+    width: 120px;
+	height: 35px;
+	border: 1.75px solid rgb(35, 35, 35);
+	background: rgb(120, 120, 120,0.35);
+	transition: 0.3s;
+}
+
+.FilesButton:hover
+{
+	margin-left:10px;
+	margin-bottom:20px;
+    width: 125px;
+	height: 40px;
+	border: 1.75px solid rgb(35, 35, 35);
+	background: rgb(140, 140, 140,0.35);
+	transition: 0.1s;
+}
+
+.AppButton
+{
+	margin-left:10px;
+	margin-bottom:20px;
+    width: 120px;
+	height: 35px;
+	border: 1.75px solid rgb(35, 35, 35);
+	background: rgb(120, 120, 120,0.35);
+	transition: 0.3s;
+}
+
+.AppButton:hover
+{
+	margin-left:10px;
+	margin-bottom:20px;
+    width: 125px;
+	height: 40px;
+	border: 1.75px solid rgb(35, 35, 35);
+	background: rgb(140, 140, 140,0.35);
+	transition: 0.1s;
+}
