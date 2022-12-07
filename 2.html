@@ -30,7 +30,7 @@
             json2=eval("(" + jsonstr + ")");
             write("雪狗日报");
             let date=new Date();
-            write(date.getFullYear()+"年"+date.getMonth()+"月"+date.getDate()+"日 "+json2.data[0].week);
+            write(date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日 "+json2.data[0].week);
             write("--------------------");
             write("今日重庆新冠病毒已确诊"+json1.data.provinceCompare.重庆.nowConfirm+"人");
             write("今日 "+json2.data[0].wea+" 温度"+json2.data[0].tem1+"°至"+json2.data[0].tem2+"° 空气"+json2.data[0].air_level+" 降雨率"+json2.data[0].rain+"%");

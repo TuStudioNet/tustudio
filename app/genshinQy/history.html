@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>历史记录</title>
+	</head>
+	<body>
+		<a href="index.html">返回</a>
+		<button onclick="
+			if(confirm('确定？'))
+			{
+				localStorage.removeItem('ysqy-history');
+				window.location.href='index.html';
+			};
+		">清空历史记录</button>
+		<script>
+			let qyHistory=[];
+			if(localStorage.getItem("ysqy-history")==null)
+			{
+				alert("无任何记录！");
+				window.location.href="index.html";
+			};
+			qyHistory=localStorage.getItem("ysqy-history").split(',')
+			if(qyHistory.length==1)
+			{
+				document.write("<p>暂无记录</p>")
+			}
+			else
+			{
+				for(let i=1;i<qyHistory.length;i++)
+				{
+					if(qyHistory[i].substring(1,2)=='5')
+					{
+						document.write("<p style='color:gold;'>"+qyHistory[i]+"</p>");
+					}
+					else if(qyHistory[i].substring(1,2)=='4')
+					{
+						document.write("<p style='color:purple;'>"+qyHistory[i]+"</p>");
+					}
+					else
+					{
+						document.write("<p style='color:blue;'>"+qyHistory[i]+"</p>");
+					} 
+				};
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charst="utf-8">
+		<title>祈愿</title>
+	</head>
+	<body>
+		<video style="display:none;z-index:-1;position:absolute;top:0px;right:0px;bottom:0px;left:0px;max-height:100%;max-width:100%;margin:auto;" src="" id="show"></video>
+		<div id="control">
+			<p id="ys"></p>
+			<p id="jc"></p>
+			<button onclick="
+				if(data.jc>=1)
+				{
+					data.jc-=1;
+					dd();
+				}
+				else
+				{
+					if(confirm('缺少 1 个纠缠之缘，是否消耗 160 原石购买？'))
+					{
+						if(data.ys>=((1-data.jc)*160))
+						{
+							data.ys-=160;
+							dd();
+						}
+						else
+						{
+							if(confirm('原石不足，是否使用等量创世结晶兑换 创世结晶：'+data.csjj))
+							{
+								if(data.csjj>=((1-data.jc)*160)-data.ys)
+								{
+									data.csjj-=((1-data.jc)*160)-data.ys;
+									data.ys=160;
+								}
+								else
+								{
+									alert('创世结晶不足');
+								};
+							};
+						};
+					};
+				};
+			">祈愿1次（纠缠之缘x1）</button>
+			<p></p>
+			<button onclick="
+				if(data.jc>=10)
+				{
+					data.jc-=10;
+					sl();
+				}
+				else
+				{
+					if(confirm('缺少 '+(10-data.jc)+' 个纠缠之缘，是否消耗 '+((10-data.jc)*160)+' 原石购买？'))
+					{
+						if(data.ys>=((10-data.jc)*160))
+						{
+							data.ys-=((10-data.jc)*160);
+							data.jc=0;
+							sl();
+						}
+						else
+						{
+							if(confirm('原石不足，是否使用等量创世结晶兑换 创世结晶：'+data.csjj))
+							{
+								if(data.csjj>=((10-data.jc)*160)-data.ys)
+								{
+									data.csjj-=((10-data.jc)*160)-data.ys;
+									data.ys=((10-data.jc)*160);
+								}
+								else
+								{
+									alert('创世结晶不足');
+								};
+							};
+						};
+					};
+				};
+			">祈愿10次（纠缠之缘x10）</button>
+			<p id="stars"></p>
+			<button onclick="
+				if(confirm('是否使用 '+(data.star-(data.star%75))+' 个无主的星尘和 '+(data.greatStar-(data.greatStar%5))+' 个无主的星辉兑换 '+(((data.star-(data.star%75))/75)+((data.greatStar-(data.greatStar%5))/5))+' 个纠缠之缘？'))
+				{
+					data.jc+=(((data.star-(data.star%75))/75)+((data.greatStar-(data.greatStar%5))/5));
+					data.star-=(data.star-(data.star%75));
+					data.greatStar-=(data.greatStar-(data.greatStar%5));
+					
+				};
+			">星尘兑换</button>
+			<button onclick="
+				if(confirm('将创世结晶全兑换成原石？ 创世结晶：'+data.csjj))
+				{
+					data.ys+=data.csjj;
+					data.csjj=0;
+				}
+			">创世结晶兑换</button>
+			<p></p>
+			<a href="history.html">历史记录</a>
+			<p></p>
+			<button onclick="
+				let cod=prompt('输入兑换码！')
+				try
+				{
+					cod=decodeURIComponent(escape(window.atob(cod)))
+					if(isNaN(Number(cod)))
+					{
+						alert('你这兑换码有问题啊！')	
+					}
+					else
+					{
+						data.ys+=Number(cod);
+						alert('兑换 '+Number(cod)+' 原石！');
+					};
+				}
+				catch(err)
+				{
+					alert('你这兑换码有问题啊！')
+				};
+			">兑换码</button>
+		</div>
+		<script>
+			let data={"ys":64800,"jc":0,"csjj":0,"fournum":0,"fivenum":0,"star":0,"greatStar":0};
+			let qyHistory=[];
+			if(localStorage.getItem("ysqy-data")==null)
+			{
+				localStorage.setItem("ysqy-data",getSaveCode());
+			}
+			else
+			{
+				readSaveCode(localStorage.getItem("ysqy-data"));
+			};
+			if(localStorage.getItem("ysqy-history")==null)
+			{
+				localStorage.setItem("ysqy-history",getBagCode());
+			}
+			else
+			{
+				qyHistory=localStorage.getItem("ysqy-history").split(',');
+			};
+			let rand=Math.floor(Math.random()*100);
+			let n=setInterval(function()
+			{
+				document.getElementById("ys").innerHTML="原石："+data.ys;
+				document.getElementById("jc").innerHTML="纠缠之缘："+data.jc;
+				document.getElementById("stars").innerHTML="无主的星尘："+data.star+"  无主的星辉："+data.greatStar;
+				localStorage.setItem("ysqy-data",getSaveCode());
+				localStorage.setItem("ysqy-history",getBagCode());
+			},1000);
+			function dd()
+			{
+				rand=Math.floor(Math.random()*100);
+				if(rand==0||data.fivenum==89)
+				{
+					document.getElementById("control").style.display="none";
+					document.getElementById("show").src="./src/1,5.mp4";
+					document.getElementById("show").style.zIndex=100;
+					document.getElementById("show").style.display="block";
+					document.getElementById("show").play();
+					setTimeout(function(){
+						document.getElementById("show").style.zIndex=-1;
+						document.getElementById("show").style.display="none";
+						document.getElementById("control").style.display="block";
+						getFiveItem();
+					},7000);
+					data.fournum=0;
+					data.fivenum=0;
+				}
+				else if(rand<5||data.fournum==9)
+				{
+					document.getElementById("control").style.display="none";
+					document.getElementById("show").src="./src/1,4.mp4";
+					document.getElementById("show").style.zIndex=100;
+					document.getElementById("show").style.display="block";
+					document.getElementById("show").play();
+					setTimeout(function(){
+						document.getElementById("show").style.zIndex=-1;
+						document.getElementById("show").style.display="none";
+						document.getElementById("control").style.display="block";
+						getFourItem();
+					},7000);
+					data.fournum=0;
+					data.fivenum+=1;
+				}
+				else
+				{
+					document.getElementById("control").style.display="none";
+					document.getElementById("show").src="./src/1,3.mp4";
+					document.getElementById("show").style.zIndex=100;
+					document.getElementById("show").style.display="block";
+					document.getElementById("show").play();
+					setTimeout(function(){
+						document.getElementById("show").style.zIndex=-1;
+						document.getElementById("show").style.display="none";
+						document.getElementById("control").style.display="block";
+						getThreeItem();
+					},7000);
+					data.fournum+=1;
+					data.fivenum+=1;
+				};
+			};
+			function sl()
+			{
+				let items=[0,0,0,0,0,0,0,0,0,0];
+				let flag=false;
+				for(let i=0;i<10;i++)
+				{
+					rand=Math.floor(Math.random()*100);
+					if(rand==0||data.fivenum==89)
+					{
+						flag=true;
+						items[i]=5;
+						data.fournum=0;
+						data.fivenum=0;
+					}
+					else if(rand<5||data.fournum==9)
+					{
+						items[i]=4;
+						data.fournum=0;
+						data.fivenum+=1;
+					}
+					else
+					{
+						items[i]=3;
+						data.fournum+=1;
+						data.fivenum+=1;
+					};
+				};
+				document.getElementById("control").style.display="none";
+				if(flag)
+					document.getElementById("show").src="./src/10,5.mp4";
+				else
+				document.getElementById("show").src="./src/10,4.mp4";
+				document.getElementById("show").style.zIndex=100;
+				document.getElementById("show").style.display="block";
+				document.getElementById("show").play();
+				setTimeout(function(){
+					document.getElementById("show").style.zIndex=-1;
+					document.getElementById("show").style.display="none";
+					document.getElementById("control").style.display="block";
+					for(let i=0;i<10;i++)
+					{
+						if(items[i]==3)
+						{
+							getThreeItem();
+						}
+						else if(items[i]==4)
+						{
+							getFourItem();
+						}
+						else
+						{
+							getFiveItem();
+						};
+					};
+				},7000);
+			};
+			function getSaveCode()
+			{
+				let tmp=data.ys+','+data.jc+','+data.csjj+','+data.fournum+','+data.fivenum+','+data.star+','+data.greatStar;
+				tmp=window.btoa(unescape(encodeURIComponent(tmp)));
+				return tmp;
+			};
+			function readSaveCode(c)
+			{
+				c=decodeURIComponent(escape(window.atob(c)));
+				data.ys=Number(c.split(',')[0]);
+				data.jc=Number(c.split(',')[1]);
+				data.csjj=Number(c.split(',')[2]);
+				data.fournum=Number(c.split(',')[3]);
+				data.fivenum=Number(c.split(',')[4]);
+				data.star=Number(c.split(',')[5]);
+				data.greatStar=Number(c.split(',')[6]);
+			};
+			function getBagCode()
+			{
+				return qyHistory.join();
+			};
+			function getThreeItem()
+			{
+				//
+				let selt=
+				[
+					"弹弓",
+					"神射手之誓",
+					"鸦羽弓",
+					"翡玉法球",
+					"讨龙英杰谭",
+					"魔导绪论",
+					"黑缨枪",
+					"以理服人",
+					"沐浴龙血的剑",
+					"铁影阔剑",
+					"飞天御剑",
+					"黎明神剑",
+					"冷刃"
+				];
+				rand=Math.floor(Math.random()*12);
+				alert(selt[rand]+" ★★★  无主的星尘 x15");
+				qyHistory.push("[3星]"+selt[rand]);
+				data.star+=15;
+			};
+			function getFourItem()
+			{
+				let selt=
+				[
+					"久岐忍",
+					"云堇",
+					"鹿野院平藏",
+					"九条裟罗",
+					"五郎",
+					"早柚",
+					"托马",
+					"烟绯",
+					"罗莎莉亚",
+					"辛焱",
+					"砂糖",
+					"迪奥娜",
+					"重云",
+					"诺艾尔",
+					"班尼特",
+					"菲谢尔",
+					"凝光",
+					"行秋",
+					"北斗",
+					"香菱",
+					"安柏",
+					"雷泽",
+					"凯亚",
+					"芭芭拉",
+					"丽莎",
+					"久岐忍",
+					"云堇",
+					"鹿野院平藏",
+					"九条裟罗",
+					"五郎",
+					"早柚",
+					"托马",
+					"烟绯",
+					"罗莎莉亚",
+					"辛焱",
+					"砂糖",
+					"迪奥娜",
+					"重云",
+					"诺艾尔",
+					"班尼特",
+					"菲谢尔",
+					"凝光",
+					"行秋",
+					"北斗",
+					"香菱",
+					"雷泽",
+					"芭芭拉",
+					"弓藏",
+					"祭礼弓",
+					"绝弦",
+					"西风猎弓",
+					"昭心",
+					"祭礼残章",
+					"流浪乐章",
+					"西风秘典",
+					"西风长枪",
+					"匣里灭辰",
+					"雨裁",
+					"祭礼大剑",
+					"钟剑",
+					"西风大剑",
+					"匣里龙吟",
+					"祭礼剑",
+					"笛剑",
+					"西风剑"
+				];
+				rand=Math.floor(Math.random()*64);
+				alert(selt[rand]+" ★★★★  无主的星辉 x2");
+				qyHistory.push("[4星]"+selt[rand]);
+				data.greatStar+=2;
+			};
+			function getFiveItem()
+			{
+				let selt=
+				[
+					"刻晴",
+					"莫娜",
+					"七七",
+					"迪卢克",
+					"琴",
+					"刻晴",
+					"莫娜",
+					"七七",
+					"迪卢克",
+					"琴",
+					"刻晴",
+					"莫娜",
+					"七七",
+					"迪卢克",
+					"琴",
+					"刻晴",
+					"莫娜",
+					"七七",
+					"迪卢克",
+					"琴",
+					"阿莫斯之弓",
+					"天空之翼",
+					"四风原典",
+					"天空之卷",
+					"和璞鸢",
+					"天空之脊",
+					"天空之刃",
+					"风鹰剑"
+				];
+				rand=Math.floor(Math.random()*27);
+				alert(selt[rand]+" ★★★★★  无主的星辉 x5");
+				qyHistory.push("[5星]"+selt[rand]);
+				data.greatStar+=5;
+			};
+		</script>
+	</body>
+</html>
