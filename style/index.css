@@ -32,7 +32,7 @@ body{
     font-weight: bolder;
 }
 
-.MGamesButton
+.MeowButton
 {
 	margin-top:150px;
 	margin-left:10px;
@@ -44,7 +44,7 @@ body{
 	transition: 0.3s;
 }
 
-.MGamesButton:hover
+.MeowButton:hover
 {
 	margin-left:10px;
 	margin-bottom:20px;
