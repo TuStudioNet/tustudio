@@ -1,0 +1,38 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    background-image: url('../img/tcdh.jpg');
+    background-size:cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.button
+{
+    margin-top:500px;
+    margin-left:10px;
+    margin-bottom:20px;
+    width: 120px;
+    height: 35px;
+    border: 1.75px solid rgb(35, 35, 35);
+    background: rgb(120, 120, 120,0.35);
+    transition: 0.3s;
+}
+
+.button:hover
+{
+    margin-left:10px;
+    margin-bottom:20px;
+    width: 125px;
+    height: 40px;
+    border: 1.75px solid rgb(35, 35, 35);
+    background: rgb(140, 140, 140,0.35);
+    transition: 0.1s;
+}

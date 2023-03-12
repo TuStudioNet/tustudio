@@ -3,17 +3,32 @@
     <head>
         <meta charset="utf-8">
         <title>水滴中队第一届吐槽大会</title>
-        <style>
-            *
-            {
-                margin: 0;
-                padding: 0;
-            }
-        </style>
+        <link rel="stylesheet" href="../../style/tcdh.css">
     </head>
-    <body style="background-image: url('../../img/tcdh.jpg');background-size:cover;display: flex;flex-direction: column;align-items: center;height: 100vh;">
+    <body>
         <div class="box" style="height: 100px;width: 100%;"></div>
-        <p class="boxword" style="margin-top:-20px;margin-bottom:50px;font-size: 50px;font-weight: bolder;color: white;">吐槽大会</p>
-        敬请期待...
+        <p class="boxword" id="b" style="margin-top:-20px;margin-bottom:50px;font-size: 50px;font-weight: bolder;color: white;">吐槽大会</p>
+        <button class="button" id="a"></button>
+        <script>
+            let a=["某同学 - 标题"];
+            let btn=document.getElementById("a");
+            let box=document.getElementById("b");
+            btn.onclick=function()
+            {
+                box.innerHTML=a[0];
+                btn.onclick=function()
+                {
+                    box.innerHTML="吐槽大会";
+                    btn.onclick=function()
+                    {
+                        box.innerHTML="颁奖";
+                        btn.onclick=function()
+                        {
+                            box.innerHTML="吐槽大会";
+                        }
+                    }
+                }
+            }
+        </script>
     </body>
 </html>
